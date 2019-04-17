@@ -11,7 +11,19 @@ The steps of this project are the following:
 * Test that the model successfully drives around track one without leaving the road
 * Summarize the results with a written report
 
-### 2.Model Description
+### 2.Dataset
+
+The dataset consists of 24108 images (8036 images per camera angle). Data augmentation is applied by flip the image horizontally (using `np.fliplr()`). 
+
+![sample_images](.examples/sample_images.png)
+
+The data process pipeline is shown below.
+
+![pipeline](.examples/pipeline.png)
+
+The training and validation datasets are splited with a ratio of 4:1. 
+
+### 3.Model Description
 
 The model architecture referenced the pilotNet of NVIDIA, which is shown below:
 
@@ -45,22 +57,22 @@ The model architecture referenced the pilotNet of NVIDIA, which is shown below:
 | Fully connected       | outputs 1 classes                             |
 | Tanh	      	        |              			                        |
 
-### 3.Training
+### 4.Training
 
-In training process, Data augmentation is applied using `np.fliplr()`. Adam optimizer was chosen because of its faster convergence and reduced oscillation. Batch size is 32 and total epochs is 50. Earlystop is applied with `val_loss` as monitor in order to get the model that could be generalized to the validation data set.
+In training process, Adam optimizer was chosen because of its faster convergence and reduced oscillation. Batch size is 32 and total epochs is 50. Earlystop is applied with `val_loss` as monitor in order to get the model that could be generalized to the validation data set.
 
 The loss curves for training and validation data set are shown as following:
 
 ![loss](examples/loss.png)
 
 
-### 4.Result
+### 5.Result
 
 The testing video for Track 1 is shown below:
 
 ![pilotnet](examples/pilotnet.gif)
 
-### 5.Possible Improvements
+### 6.Possible Improvements
 
 * The model should be generalized to be able to run on Track 2 in the simulator. The model is currently available only in Track 1 because data has not been collected on Track 2. In the future, data should be expanded with that from Track 2.
 * When driving a car, we change steering angles based on the traffic/road conditions in few seconds rather than on instantaneous driving decisions. Therefore, it would be interesting to see how models such as LSTM and GRU perform in this problem.

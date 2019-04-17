@@ -114,9 +114,9 @@ if __name__ == "__main__":
 
     model.compile(loss='mse', optimizer='adam', metrics = ["accuracy"])
     checkpoint = ModelCheckpoint(filepath=save_path, monitor="val_loss", save_best_only=True)
-    stopper = EarlyStopping(monitor="val_loss", min_delta=2e-5, patience=20)
+    stopper = EarlyStopping(monitor="val_loss", min_delta=2e-5, patience=10)
     history_object = model.fit_generator(train_generator, steps_per_epoch = np.ceil(len(train_samples) / batch_size), validation_data = valid_generator,
-                        validation_steps = np.ceil(len(valid_samples) / batch_size),epochs = 100, verbose = 1, callbacks=[checkpoint, stopper])
+                        validation_steps = np.ceil(len(valid_samples) / batch_size),epochs = 50, verbose = 1, callbacks=[checkpoint, stopper])
 
     model.save("model.h5")
 

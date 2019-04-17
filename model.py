@@ -36,16 +36,21 @@ def generator(samples, path, batch_size=32):
             angles = []
             for batch_sample in batch_samples:
                 name = os.path.join(path, 'IMG/'+batch_sample[0].split('/')[-1])
+                l_name = os.path.join(path, 'IMG/'+batch_sample[1].split('/')[-1])
+                r_name = os.path.join(path, 'IMG/'+batch_sample[2].split('/')[-1])
                 try:
                     center_image = cv2.cvtColor(cv2.imread(name), cv2.COLOR_BGR2RGB)
+                    left_image = cv2.cvtColor(cv2.imread(l_name), cv2.COLOR_BGR2RGB)
+                    right_image = cv2.cvtColor(cv2.imread(r_name), cv2.COLOR_BGR2RGB)
                 except Exception as e:
                     print(name)
                     exit(e)
+                correction = 0.2
                 center_angle = float(batch_sample[3])
-                images.append(center_image)
-                angles.append(center_angle)
-                images.append(np.fliplr(center_image))
-                angles.append(center_angle*-1.0)
+                right_angle = float(batch_sample[3] - correction)
+                left_angle = float(batch_sample[3] + correction)
+                images.extend([center_image, np.fliplr(center_image), right_image, np.fliplr(right_image), left_image, np.fliplr(left_image)])
+                angles.extend([center_angle, -center_angle, right_angle, -right_angle, left_angle, -left_angle])
 
             # trim image to only see section with road
             X_train = np.array(images)

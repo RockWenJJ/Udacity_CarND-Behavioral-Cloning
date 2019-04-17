@@ -29,9 +29,9 @@ The following resources can be found in this github repository:
 
 The simulator can be downloaded from the classroom. In the classroom, we have also provided sample data that you can optionally use to help train your model.
 
-## Details About Files In This Directory
+### Details About Files In This Directory
 
-### `drive.py`
+#### `drive.py`
 
 Usage of `drive.py` requires you have saved the trained model as an h5 file, i.e. `model.h5`. See the [Keras documentation](https://keras.io/getting-started/faq/#how-can-i-save-a-keras-model) for how to create this file using the following command:
 ```sh
@@ -56,7 +56,7 @@ The fourth argument, `run1`, is the directory in which to save the images seen b
 
 The image file name is a timestamp of when the image was seen. This information is used by `video.py` to create a chronological video of the agent driving.
 
-### `video.py`
+#### `video.py`
 
 ```sh
 python video.py run1
@@ -72,7 +72,7 @@ python video.py run1 --fps 48
 
 Will run the video at 48 FPS. The default FPS is 60.
 
-#### Result
+### Result
 
 The testing video for Track 1 is shown below:
 

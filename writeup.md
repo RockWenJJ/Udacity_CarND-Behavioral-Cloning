@@ -51,7 +51,7 @@ In training process, Data augmentation is applied using `np.fliplr()`. Adam opti
 
 The loss curves for training and validation data set are shown as following:
 
-![loss](exapmles/loss.png)
+![loss](examples/loss.png)
 
 
 ### 4.Result

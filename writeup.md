@@ -15,11 +15,11 @@ The steps of this project are the following:
 
 The dataset consists of 24108 images (8036 images per camera angle). Data augmentation is applied by flip the image horizontally (using `np.fliplr()`). 
 
-![sample_images](.examples/sample_images.png)
+![sample_images](examples/sample_images.png)
 
 The data process pipeline is shown below.
 
-![pipeline](.examples/pipeline.png)
+![pipeline](examples/pipeline.png)
 
 The training and validation datasets are splited with a ratio of 4:1. 
 
